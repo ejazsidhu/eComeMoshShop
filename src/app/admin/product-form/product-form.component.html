@@ -1,0 +1,53 @@
+<a routerLink="/admin/products" class="btn btn-primary">All Products</a>
+<hr>
+<div class="row">
+  <div class="col-md-12">
+    <form #f="ngForm" (ngSubmit)="save(f)">
+
+
+      <div class="form-group">
+        <label for="title">Title</label> 
+        <!-- {{title.value.length}} -->
+        <input #title="ngModel" required name="title" ngModel id="title" maxlength="20" type="text" class="form-control">
+     <div class="alert alert-danger" *ngIf="title.touched && title.invalid ">
+       title is required.
+     </div>
+      </div>
+      <div class="form-group">
+        <label for="price">Price</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">$</span>
+          </div>
+          <input #price="ngModel" required name="price" ngModel id="price" type="number" class="form-control" aria-describedby="basic-addon1">
+          
+        </div>
+        <div class="alert alert-danger" *ngIf="price.touched && price.invalid ">
+            price is required.
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select #category="ngModel" required name="category" ngModel id="category" class="form-control">
+          <option value=""></option>
+          <option *ngFor="let c of categories$ | async " [value]="c.$key">{{c.name}}</option>
+        </select>
+
+        <div class="alert alert-danger" *ngIf="category.touched && category.invalid ">
+            Category is required.
+          </div>
+
+      </div>
+      <div class="form-group">
+        <label for="imageurl">Image URL</label>
+        <input #imageUrl="ngModel" required name="imageUrl" ngModel id="imageUrl" type="text" class="form-control">
+        <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid ">
+            Image Url is required.
+          </div>
+      </div>
+
+      <button class="btn btn-primary" [disabled]="!f.valid" >Save</button>
+
+    </form>
+  </div>
+</div>

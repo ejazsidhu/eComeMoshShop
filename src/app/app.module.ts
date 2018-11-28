@@ -15,7 +15,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth'
 import { environment } from 'src/environments/environment';
 
 // ng-bootstrap
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // components
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
@@ -27,6 +27,11 @@ import { MyOrderComponent } from './my-order/my-order.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { LoginComponent } from './login/login.component';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth-guard.service';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -41,31 +46,39 @@ import { LoginComponent } from './login/login.component';
     MyOrderComponent,
     AdminOrdersComponent,
     AdminProductsComponent,
-    LoginComponent
+    LoginComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     NgbModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     RouterModule.forRoot([
+      // {path:'',redirectTo:'',pathMatch:'full'},
       { path: '', component: HomeComponent },
       { path: 'products', component: ProductsComponent },
-      { path: 'products', component: ProductsComponent },
+      
       { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'check-out', component: CheckOutComponent },
       { path: 'order-success', component: OrderSuccessComponent },
       { path: 'my/orders', component: MyOrderComponent },
       { path: 'login', component: LoginComponent },
       { path: 'admin/products', component: AdminProductsComponent },
+      { path: 'admin/add-product', component: ProductFormComponent },
+
       { path: 'admin/orders', component: AdminOrdersComponent },
-      {path:'**',component:HomeComponent}
+      { path: '**', component: HomeComponent }
 
     ])
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
