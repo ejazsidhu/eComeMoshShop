@@ -15,4 +15,13 @@ export class ProductService {
   getAllProducts(){
     return this.db.list('/products');
   }
+  getProductById(id){
+    console.log(id)
+    return this.db.object('/products/'+id);
+  }
+
+  update(productId,product){
+    this.db.object('/products/'+productId).update(product);
+
+  }
 }

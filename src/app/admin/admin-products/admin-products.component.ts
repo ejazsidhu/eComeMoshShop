@@ -11,7 +11,7 @@ export class AdminProductsComponent implements OnInit {
   products$;
 
   constructor(private productService:ProductService) { 
-    this.products$=productService.getAllProducts();
+    this.products$=this.productService.getAllProducts();
   }
 
   ngOnInit() {

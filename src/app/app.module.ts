@@ -31,6 +31,7 @@ import { AuthService } from './auth.service';
 import { AuthGuard } from './auth-guard.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { FormsModule } from '@angular/forms';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 
 
@@ -47,7 +48,8 @@ import { FormsModule } from '@angular/forms';
     AdminOrdersComponent,
     AdminProductsComponent,
     LoginComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +70,8 @@ import { FormsModule } from '@angular/forms';
       { path: 'my/orders', component: MyOrderComponent },
       { path: 'login', component: LoginComponent },
       { path: 'admin/products', component: AdminProductsComponent },
+      { path: 'admin/product/:id', component: ProductDetailsComponent },
+     
       { path: 'admin/add-product', component: ProductFormComponent },
 
       { path: 'admin/orders', component: AdminOrdersComponent },

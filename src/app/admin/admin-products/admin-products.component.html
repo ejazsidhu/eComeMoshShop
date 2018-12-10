@@ -2,12 +2,35 @@
 <hr>
 
 <div class="row">
-    <div class="col-md-3" *ngFor="let p of products$ | async">
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of products$ | async">
+                <td>{{p.title}}</td>
+                <td>{{p.price}}./pkr</td>
+                <td>
+                    <a routerLink="/admin/product/{{p.$key}}"  class="btn btn-primary">edit</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- <div class="col-md-2" >
    
             <img src="{{p.imageUrl}}" alt="noImage" class="img-thumbnail" width="150"> <br>
             <label> <strong>Title:</strong>  {{p.title}} </label> <br>
             <label> <strong>Price:</strong>{{p.price}}./pkr </label>
-    </div>
+            <label> <strong>Price:</strong>{{p.$key}}./pkr </label>
+
+    </div> -->
 </div>
 
 
+ 
