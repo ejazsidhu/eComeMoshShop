@@ -1,3 +1,46 @@
-<p>
-  home works!
-</p>
+<div class="container">
+  <div class="row">
+    <i class="fa fa-spinner fa-spin" *ngIf="loading"></i>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <div class="row">
+      
+        <div class="list-group">
+            <a class="list-group-item list-group-item-action "
+            routerLink="/" 
+            (click)="getAllProducts()"
+            [class.active]="!category"
+            >All categories</a>
+            <a
+             *ngFor="let list of categories$ |async"
+             class="list-group-item list-group-item-action"
+             routerLink="/" 
+             [queryParams]="{category:list.$key}" 
+             [class.active]="category === list.$key"
+             >{{list.name}}</a>
+          </div>
+
+      </div>
+
+    </div>
+    <div class="col">
+      <div class="row" *ngIf="filterProducts.length>0;else noProducts">
+        <div class="col-md-4 mt-2" *ngFor="let item of filterProducts">
+          <div class="card text-left">
+            <img class="card-img-top" src="{{item.imageUrl}}" alt="">
+            <div class="card-body">
+              <h4 class="card-title">{{item.title}}-({{item.category}})</h4>
+              <p class="card-text">{{item.price}}</p>
+              <button class="btn btn-primary btn-block">add to cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #noProducts >
+        <h5>No products available</h5>
+      </ng-template>
+    </div>
+  </div>
+
+</div>

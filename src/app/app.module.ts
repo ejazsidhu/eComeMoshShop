@@ -60,7 +60,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     RouterModule.forRoot([
-      // {path:'',redirectTo:'',pathMatch:'full'},
+      // {path:'',redirectTo:'home',pathMatch:'full'},
       { path: '', component: HomeComponent },
       { path: 'products', component: ProductsComponent },
       
